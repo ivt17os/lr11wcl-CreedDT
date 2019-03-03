@@ -10,7 +10,7 @@
 using namespace std;
 
 int main(int argc, char** argv ) {
-    long long t1, t2, freq;
+    long long t1, t2, freq, q=0;
 	string str;
 	
 	//if (argc == 1) 
@@ -24,12 +24,16 @@ int main(int argc, char** argv ) {
 	ifstream f("a.txt");
 	
     QueryPerformanceFrequency((LARGE_INTEGER *)&freq);// запрашиваем число тиков в 1 сек
-
-
+	
 	QueryPerformanceCounter((LARGE_INTEGER *)&t1);// смотрим время после окончания цикла
+
+	while (!f.eof()){
 	getline(f, str);
+	q++;
+	}
+
 	QueryPerformanceCounter((LARGE_INTEGER *)&t2);// смотрим время после окончания цикла
 
-	cout << str << "\n Time spent:" << (t2-t1)/(1.*freq);
+	cout << q << "\nTime spent:" << (t2-t1)/(1.*freq) << "\n";
 	return 0;
 }
